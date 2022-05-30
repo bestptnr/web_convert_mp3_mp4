@@ -3,31 +3,58 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>YOUTUBE CONVERT</title>
+    <style>
+      .bg{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50vh;
+      }
+      .bg2{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .input-1{
+        width: 100%;
+      }
+      .input-2{
+        width: 40%;
+      }
+   
+    </style>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
   </head>
   <body>
-    <div class="container">
-        <h2 class="mt-5 text-center">YOUTUBE DOWNLOAD</h2>
-        <table class="table mt-3">
-            <thead class="table-dark">
-              <tr>
-                <th scope="col" class="text-center">Reslolution</th>
-                <th scope="col" class="text-center">Type</th>
-                <th scope="col" class="text-center">Link</th>
-              </tr>
-            </thead>
-            <tbody>
-          
-                {% for i in data%}
-              <tr>
-                <td class="text-center">{{ i.resolution }}</td>
-                <td class="text-center">{{ i.mime_type }}</td>
-                <td class="text-center"><a href="{{ i.url }}">DOWNLOAD</a></td>
-              </tr>
-                {% endfor %}
-            </tbody>
-          </table>
+    <div class="container bg">
+      <div>
+        <h1> <span style="color:red;">YOUTUBE</span> CONVERT MP3 & MP4</h1>
+        <form action="{{ url_for('index')}}" method="POST">
+          <div class="d-flex">
+            <div class="input-1">
+              <input type="search" name="url" class="form-control mt-4" placeholder="LINK YOUTUBE">
+            </div>
+            <div class="input-2">
+              <button type="submit" value="DOWNLOAD" class="form-control mt-4 input-2 btn btn-danger">DOWNLOAD</button>
+
+            </div>
+  
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="container bg2">
+      <div>
+        <iframe width="560" height="315" src="{{ data['url'] }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        {% if data != "" %}
+        <div class="text-center">
+          <a href="{{ data['mp3'] }}" class="btn btn-danger mt-2">DOWNLOD MP3 </a>
+          <a href="{{ data['mp4'] }}" class="btn btn-danger mt-2">DOWNLOD MP4 </a>
+        </div>
+        {% endif %}
+      </div>
+
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
   </body>
