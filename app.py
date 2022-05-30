@@ -5,6 +5,7 @@ app = Flask(__name__)
 @app.route("/",methods=["POST","GET"])
 def index():
     if request.method == "GET":
+        data=""
         return render_template("index.html",data="")
     if request.method == "POST":
         dic = dict()
